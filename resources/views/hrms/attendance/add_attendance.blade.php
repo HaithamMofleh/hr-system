@@ -89,11 +89,10 @@
                                             <h6> Days </h6>
                                         </label>
                                         <select name="days[]" class="days-select gui-input" multiple="multiple" required>
-                                            <option value="Monday">Monday</option>
+                                            <option value="Monday" selected>Monday</option>
                                             <option value="Tuesday">Tuesday</option>
                                             <option value="Wednesday">Wednesday</option>
                                             <option value="Thursday">Thursday</option>
-                                            <option value="Friday" selected>Friday</option>
                                             <option value="Saturday">Saturday</option>
                                             <option value="Sunday">Sunday</option>
                                         </select>

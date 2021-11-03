@@ -9,14 +9,16 @@
 
   use Illuminate\Http\Request;
   use App\Http\Requests;
+use App\Repositories\LeaveRepository;
 
-
-  class LeaveController extends Controller
+class LeaveController extends Controller
   {
-    /**
-     * LeaveController constructor.
-     * @param Mailer $mailer
-     */
+    private $leaveRepository;
+    public function __construct(LeaveRepository $leaveRepository)
+    {
+      $this->leaveRepository = $leaveRepository;
+    }
+    
     
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
@@ -47,7 +49,8 @@
      */
     public function showLeaveType()
     {
-      $leaves = LeaveType::paginate(10);
+      $leaves = $this->leaveRepository->getAllLeaveType();
+
       return view('hrms.leave.show_leave_type', compact('leaves'));
     }
 
@@ -104,7 +107,7 @@
     public function showMyLeave()
     {
 
-      $leaves = EmployeeLeaves::where('user_id', \Auth::user()->id)->paginate(15);
+      $leaves = $this->leaveRepository->getMyLeaves();
       return view('hrms.leave.show_my_leaves', compact('leaves'));
     }
 

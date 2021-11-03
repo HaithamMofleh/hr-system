@@ -25,10 +25,10 @@ class ImportAttendanceData
         $user = Employee::find($request['user_id']);
        
         if (!$user) {
-            return redirect()->back()->with('flash_message', 'User Not Fund');
+            abort(404);
         }
         $request['user_id'] = $user->user_id;
         $request['days'] = implode (", ", $request->days);
-        EmployeeLeaves::create($request->toArray());
+        return EmployeeLeaves::create($request->toArray());
     }
 }

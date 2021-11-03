@@ -18,12 +18,7 @@ class AttendanceController extends Controller
 {
   public $attendanceData;
 
-  /**
-   * AttendanceController constructor.
-   * @param ExportRepository $exportRepository
-   * @param UploadRepository $uploadRepository
-   * @param ImportAttendanceData $attendanceData
-   */
+  
   public function __construct(ImportAttendanceData $attendanceData)
   {
     $this->attendanceData = $attendanceData;
@@ -46,7 +41,12 @@ class AttendanceController extends Controller
    */
   public function uploadFile(AddAttendanceRequest $request)
   {
-    $this->attendanceData->addAttendance($request);
+    $attendance = $this->attendanceData->addAttendance($request);
+
+    if (!$attendance) {
+      \Session::flash('flash_message', 'Attendance have not been added');
+      return redirect()->back();
+    }
     \Session::flash('flash_message1', 'Attendance successfully Added!');
     return redirect()->back();
   }
