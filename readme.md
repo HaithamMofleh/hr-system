@@ -57,7 +57,5 @@ After migration, run the database seeder:
     
 Once done migrating and seeding you will have default user:
 
-    email: email@gmail.com
-    password: 123456   
-  
-### Credit to the developer, Rayhan Zaman - https://github.com/RayhanZaman333
+    email: hr@gmail.com
+    password: 123456789   
